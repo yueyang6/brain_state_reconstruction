@@ -23,6 +23,7 @@ x1s = []
 x2s = []
 ex_inputs = []
 ex_input_list = []
+# generate 6 combinations of taus
 for i in range(6):
     x1 = random.uniform(0.01, 0.06)
     x2 = random.uniform(0.01, 0.06)
@@ -35,6 +36,7 @@ for i in range(6):
                             np.repeat(alpha_e*2*2.5*0.25*270/timestep/x1,timestep*length),
                             np.repeat(alpha_e*2*2.5*270/timestep/x1,timestep*length),
                             np.repeat(alpha_e*2*2.5*0.8*270/timestep/x1,timestep*length)]))
+# connecting combinations of taus
 for j in range(5):
     ex_input_list.insert(2*j+1,np.linspace(ex_inputs[j],
                                           ex_inputs[j+1],num=timestep*length,endpoint=False))
@@ -48,7 +50,7 @@ for j in range(5):
                                               alpha_e*2*2.5*0.8*270/timestep/x1s[j+1],num=timestep*length,endpoint=False)]))
 externals = np.concatenate(ex_input_list)
 strengths = np.concatenate(arrays,axis=1)
-
+# put random parameters into nmm to generate state vector and observation
 states, obs = set_params_t(externals,np.empty(0),0.4e3,strengths)
 df = np.concatenate([states, obs])
 X_list1 = np.array(df).transpose()[np.newaxis,:]
@@ -74,7 +76,7 @@ model.load_weights('saved_weights/bi_in_0_1_noise_1_feature_128_32_stateless')
 
 model.reset_states()
 y_pred = model.predict(X_list1[0:1,:,-1])
-
+# mean std from training dataset
 mean = np.array([-9430.31644298873, 0.061499979854792206, 668.8256234221615, 0.04783514578400952,
                                  2677.787166964063, 0.21137596872545505, 5151.0016393321275, -0.021202987884969188,
                                  4019.7113977999547, -594.7295733324208, 111.29960975111818, 444.8899198620829,
@@ -92,6 +94,7 @@ y_pred_k = kalman_filter(X_list1[0:1,:,-1]*43.43043731786296-5.191765126838112, 
 y_pred_k = np.nan_to_num(y_pred_k)
 seconds = np.linspace(0,109,43600)
 
+# remove the first
 blue = y_truth[12,:-400]
 orange = y_pred_k[12,:-400]
 green = y_resc[:-400,12]
