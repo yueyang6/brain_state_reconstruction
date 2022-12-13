@@ -12,7 +12,7 @@ if __name__ == '__main__':
     tau_e = 0.01
     tau_i = 0.01
     # step of increase
-    step = 0.01/3
+    step = 0.01
     # testing params
     input_offset_test = np.empty(0)
     time_test = 5
@@ -21,9 +21,9 @@ if __name__ == '__main__':
     input_offset = np.empty(0)
     time = 10
     Fs = 0.4e3
-    while tau_e <= 0.015:
+    while tau_e <= 0.06:
         tau_i = 0.01
-        while tau_i <= 0.015:
+        while tau_i <= 0.06:
             ex_input = 0
             input_flag = 0
             osci_flag = 0
