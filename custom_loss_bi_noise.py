@@ -12,7 +12,8 @@ from util.custom_loss import custom_loss
 
 # configure GPU
 physical_devices = tf.config.list_physical_devices('GPU')
-# tf.config.experimental.set_memory_growth(physical_devices[0], enable=True)
+if len(physical_devices) != 0:
+    tf.config.experimental.set_memory_growth(physical_devices[0], enable=True)
 
 
 def get_sz(file):
