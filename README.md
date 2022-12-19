@@ -26,6 +26,7 @@ matplotlib==3.5.3
 
 statsmodels==0.13.5
 
+tensorflow==2.3.0
 
 ## Data Generation
 In the "simu_data" folder, you can run the file to generate a small dataset of simulation recordings which is approximately 600MB.
