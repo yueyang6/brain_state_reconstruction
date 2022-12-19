@@ -7,6 +7,27 @@ Reommend to create an environment form the env.yml file with the following comma
 conda env create -f env.yml
 ```
 
+For Mac users, you might find conflicts when trying the above command.
+
+
+Please create a Python 3.7 conda environment, and install the following packages.
+
+numpy==1.18.5
+
+scipy==1.4.1
+
+pandas==1.3.5
+
+tqdm==4.64.1
+
+scikit-learn==1.0.2
+
+matplotlib==3.5.3
+
+statsmodels==0.13.5
+
+tensorflow==2.3.0
+
 ## Data Generation
 In the "simu_data" folder, you can run the file to generate a small dataset of simulation recordings which is approximately 600MB.
 
