@@ -32,7 +32,7 @@ if __name__ == '__main__':
         try:
             df = pd.read_csv(file, index_col=0)
             x = df.iloc[13:14, :].transpose()
-            y = df.iloc[:14, :4].transpose()
+            y = df.iloc[:14, :].transpose()
         except (IndexError, KeyError, pd.errors.ParserError):
             print(file)
             continue
