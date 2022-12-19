@@ -14,7 +14,7 @@ Please create a Python 3.7 conda environment, and install the following packages
 
 numpy==1.18.5
 
-sicpy==1.4.1
+scipy==1.4.1
 
 pandas==1.3.5
 
