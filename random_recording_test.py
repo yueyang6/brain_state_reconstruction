@@ -61,18 +61,29 @@ batch_size = 1
 T_after_cut = 400
 targets = 14
 model = keras.Sequential()
-model.add(Bidirectional(tf.compat.v1.keras.layers.CuDNNLSTM(128,
-                           return_sequences=True,
-                           stateful=False), batch_input_shape=(batch_size,T_after_cut ,1)))
-model.add(Bidirectional(tf.compat.v1.keras.layers.CuDNNLSTM(32,
-                           return_sequences=True,
-                           stateful=False), batch_input_shape=(batch_size,T_after_cut ,128)))
+if len(physical_devices) == 0:
+    model.add(Bidirectional(tf.keras.layers.LSTM(128, return_sequences=True,
+                                                 stateful=False),
+                            batch_input_shape=(batch_size, T_after_cut, features)))
+    model.add(Bidirectional(tf.keras.layers.LSTM(32, return_sequences=True,
+                                                 stateful=False),
+                            batch_input_shape=(batch_size, T_after_cut, 128)))
+else:
+    model.add(Bidirectional(tf.compat.v1.keras.layers.CuDNNLSTM(128,
+                               return_sequences=True,
+                               stateful=False), batch_input_shape=(batch_size,T_after_cut ,1)))
+    model.add(Bidirectional(tf.compat.v1.keras.layers.CuDNNLSTM(32,
+                               return_sequences=True,
+                               stateful=False), batch_input_shape=(batch_size,T_after_cut ,128)))
 
 model.add(layers.TimeDistributed(layers.Dense(targets, activation='linear')))
 
 optimizer = keras.optimizers.RMSprop(lr=0.0001)
 model.compile(loss=custom_loss, optimizer=optimizer, run_eagerly=True)
-model.load_weights('saved_weights/bi_in_0_1_noise_1_feature_128_32_stateless')
+if len(physical_devices) == 0:
+    model.load_weights('saved_weights/bi_in_0_1_noise_1_feature_cpu')
+else:
+    model.load_weights('saved_weights/bi_in_0_1_noise_1_feature_128_32_stateless')
 
 model.reset_states()
 y_pred = model.predict(X_list1[0:1,:,-1])
