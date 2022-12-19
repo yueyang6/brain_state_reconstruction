@@ -12,7 +12,7 @@ from util.custom_loss import custom_loss
 
 # configure GPU
 physical_devices = tf.config.list_physical_devices('GPU')
-tf.config.experimental.set_memory_growth(physical_devices[0], enable=True)
+# tf.config.experimental.set_memory_growth(physical_devices[0], enable=True)
 
 
 def get_sz(file):
@@ -22,7 +22,6 @@ def get_sz(file):
 
 
 if __name__ == '__main__':
-    time_steps = 1200
     files_path = glob.glob('./simu_data/*.csv')
     X_list1 = []
     y_list1 = []
@@ -32,7 +31,7 @@ if __name__ == '__main__':
         try:
             df = pd.read_csv(file, index_col=0)
             x = df.iloc[13:14, :].transpose()
-            y = df.loc[:14, :].transpose()
+            y = df.iloc[:14, :4].transpose()
         except (IndexError, KeyError, pd.errors.ParserError):
             print(file)
             continue
@@ -99,12 +98,20 @@ if __name__ == '__main__':
 
     # LSTM model
     model = keras.Sequential()
-    model.add(Bidirectional(tf.compat.v1.keras.layers.CuDNNLSTM(128, return_sequences=True,
-                                                                stateful=False),
-                            batch_input_shape=(batch_size, T_after_cut,features)))
-    model.add(Bidirectional(tf.compat.v1.keras.layers.CuDNNLSTM(32, return_sequences=True,
-                                                                stateful=False),
-                            batch_input_shape=(batch_size, T_after_cut, 128)))
+    if len(physical_devices) == 0:
+        model.add(Bidirectional(tf.keras.layers.LSTM(128, return_sequences=True,
+                                                     stateful=False),
+                                batch_input_shape=(batch_size, T_after_cut, features)))
+        model.add(Bidirectional(tf.keras.layers.LSTM(32, return_sequences=True,
+                                                     stateful=False),
+                                batch_input_shape=(batch_size, T_after_cut, 128)))
+    else:
+        model.add(Bidirectional(tf.compat.v1.keras.layers.CuDNNLSTM(128, return_sequences=True,
+                                                                    stateful=False),
+                                batch_input_shape=(batch_size, T_after_cut, features)))
+        model.add(Bidirectional(tf.compat.v1.keras.layers.CuDNNLSTM(32, return_sequences=True,
+                                                                    stateful=False),
+                                batch_input_shape=(batch_size, T_after_cut, 128)))
     model.add(layers.TimeDistributed(layers.Dense(targets, activation='linear')))
     optimizer = keras.optimizers.RMSprop(lr=0.001)
     model.compile(loss=custom_loss, optimizer=optimizer, run_eagerly=True)

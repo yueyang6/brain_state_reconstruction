@@ -19,7 +19,7 @@ if __name__ == '__main__':
     Fs_test = 0.4e3
     # generator params
     input_offset = np.empty(0)
-    time = 10
+    time = 2
     Fs = 0.4e3
     while tau_e <= 0.06:
         tau_i = 0.01
@@ -34,7 +34,7 @@ if __name__ == '__main__':
                 result = set_params_test(ex_input, input_offset_test, time_test, Fs_test, (tau_e, tau_i))
                 y = result.iloc[13, :]
                 # statistical test
-                ljun_test = acorr_ljungbox(y).loc[:,'lb_pvalue'].min()
+                ljun_test = acorr_ljungbox(y,return_df=True).loc[:,'lb_pvalue'].min()
                 # and_stat = anderson_result[0]
                 # and_crit = anderson_result[1][4]
 

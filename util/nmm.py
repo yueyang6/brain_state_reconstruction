@@ -13,7 +13,7 @@ import math
 # NMM parameter initialization
 def set_params(ex_tau, in_tau, ext_input, input_offset, TimeOfSim, Fs, sigma_R=1e-3):
     """
-    set_params, migrated from the MATLAB version by Pip Karoly
+    set_params, migrated from the MATLAB version by xxx
     Set parameters for the neural mass model
 
     Inputs:
@@ -34,14 +34,11 @@ def set_params(ex_tau, in_tau, ext_input, input_offset, TimeOfSim, Fs, sigma_R=1
 
     For further references see:
 
-        [1] Freestone, D. R., Karoly, P. J., Neši?, D., Aram, P., Cook, M. J., & Grayden, D. B. (2014).
-        Estimation of effective connectivity via data-driven neural modeling. Frontiers in neuroscience, 8, 383
+        [1]
 
-        [2] Ahmadizadeh, S., Karoly, P. J., Neši?, D., Grayden, D. B., Cook, M. J., Soudry, D., & Freestone, D. R. (2018).
-        Bifurcation analysis of two coupled Jansen-Rit neural mass models. PloS one, 13(3), e0192842.
+        [2]
 
-        [3] Kuhlmann, L., Freestone, D. R., Manton, J. H., Heyse, B., Vereecke, H. E., Lipping, T., ... & Liley, D. T. (2016).
-        Neural mass model-based tracking of anesthetic brain states. NeuroImage, 133, 438-456.
+        [3]
     """
 
     scale = 50  # This is to get states and derivatives on the same order of magnitude
@@ -349,7 +346,7 @@ def propagate_metrics(N_syn, N_states, N_inputs, A, B, C, P_0p, xi_0p, varsigma,
     gain terms (alpha) in a NMM.
 
     Authors:
-        Dean Freestone, Philippa Karoly 2016
+        xxx xxx, xxx xxx 2016
 
     This code is licensed under the MIT License 2018
 
@@ -391,14 +388,11 @@ def propagate_metrics(N_syn, N_states, N_inputs, A, B, C, P_0p, xi_0p, varsigma,
     Further details on the estimation method can be found in
     the following references:
 
-    [1] Freestone, D. R., Karoly, P. J., Neši?, D., Aram, P., Cook, M. J., & Grayden, D. B. (2014).
-    Estimation of effective connectivity via data-driven neural modeling. Frontiers in neuroscience, 8, 383
+    [1]
 
-    [2] Ahmadizadeh, S., Karoly, P. J., Neši?, D., Grayden, D. B., Cook, M. J., Soudry, D., & Freestone, D. R. (2018).
-    Bifurcation analysis of two coupled Jansen-Rit neural mass models. PloS one, 13(3), e0192842.
+    [2]
 
-    [3] Kuhlmann, L., Freestone, D. R., Manton, J. H., Heyse, B., Vereecke, H. E., Lipping, T., ... & Liley, D. T. (2016).
-    Neural mass model-based tracking of anesthetic brain states. NeuroImage, 133, 438-456.
+    [3]
 
     """
     # Give
