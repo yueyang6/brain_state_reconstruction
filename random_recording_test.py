@@ -64,7 +64,7 @@ model = keras.Sequential()
 if len(physical_devices) == 0:
     model.add(Bidirectional(tf.keras.layers.LSTM(128, return_sequences=True,
                                                  stateful=False),
-                            batch_input_shape=(batch_size, T_after_cut, features)))
+                            batch_input_shape=(batch_size, T_after_cut, 1)))
     model.add(Bidirectional(tf.keras.layers.LSTM(32, return_sequences=True,
                                                  stateful=False),
                             batch_input_shape=(batch_size, T_after_cut, 128)))
