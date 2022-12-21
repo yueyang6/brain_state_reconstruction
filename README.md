@@ -29,7 +29,7 @@ statsmodels==0.13.5
 tensorflow==2.3.0
 
 ## Data Generation
-In the "simu_data" folder, you can run the file to generate a small dataset of simulation recordings which is approximately 600MB.
+In the "simu_data" folder, you can run the file to generate a small dataset of simulation recordings which is approximately 600MB. A larger dataset is used for the paper by setting the step as 0.01/3, which will generate recordings around 10GB.
 
 The recordings are generated following the flow chart. Ljung-Box test is used for hypothesis testing.
 ![fig2_v2](https://user-images.githubusercontent.com/54312398/208929960-237fdfc5-af98-4744-a924-4a972c87fac0.png)
@@ -38,7 +38,7 @@ The recordings are generated following the flow chart. Ljung-Box test is used fo
 ## Training
 By running "custom_loss_bi_noise.py" file, the model will be trained on the training data located in the "simu_data" folder.
 
-Or the trained weights same as the paper has used is provided in the "saved_weights" folder.
+Or the trained weights that the paper has used is provided in the "saved_weights" folder.
 
 
 ## Testing
