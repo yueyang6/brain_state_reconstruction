@@ -32,7 +32,7 @@ tensorflow==2.3.0
 In the "simu_data" folder, you can run the file to generate a small dataset of simulation recordings which is approximately 600MB.
 
 The recordings are generated following the flow chart. Ljung-Box test is used for hypothesis testing.
-![fig2](https://user-images.githubusercontent.com/54312398/207741349-56cedea1-4d49-4fff-a022-49e59ec61074.png)
+![fig2_v2](https://user-images.githubusercontent.com/54312398/208929960-237fdfc5-af98-4744-a924-4a972c87fac0.png)
 
 
 ## Training
