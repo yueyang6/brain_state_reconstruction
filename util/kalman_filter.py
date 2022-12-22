@@ -4,7 +4,6 @@ from util.nmm import set_params, propagate_metrics
 
 
 def isPD(B):
-    """Returns true when input is positive-definite, via Cholesky"""
     try:
         _ = np.linalg.cholesky(B)
         return True
@@ -21,12 +20,12 @@ def nearest_spd(A):
     Ahat = (Ahat + Ahat.T)/2
     if isPD(Ahat):
         return Ahat, k
-    spacing = np.spacing(np.linalg.norm(A))
+    space = np.spacing(np.linalg.norm(A))
     I = np.eye(A.shape[0])
     k = 1
     while not isPD(Ahat):
         mineig = np.min(np.real(np.linalg.eigvals(Ahat)))
-        Ahat += I * (-mineig * k ** 2 + spacing)
+        Ahat += I * (-mineig * k ** 2 + space)
         k += 1
         if k >= 1e5:
             k = -1
@@ -124,6 +123,6 @@ def kalman_filter(data, ex_tau, in_tau, ext_input, Fs=0.4e3):
         except(np.linalg.LinAlgError):
             P_hat[:,:,t] , k = nearest_spd(P_hat[:,:,t])
             if k == -1:
-                print('cannot find PSD')
+                print('cannot find SPD')
         P_diag[:,t] = np.diag(P_hat[:,:,t])
     return xi_hat
