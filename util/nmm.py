@@ -34,11 +34,14 @@ def set_params(ex_tau, in_tau, ext_input, input_offset, TimeOfSim, Fs, sigma_R=1
 
     For further references see:
 
-        [1]
+        [1] Freestone, D. R., Karoly, P. J., Neši?, D., Aram, P., Cook, M. J., & Grayden, D. B. (2014).
+        Estimation of effective connectivity via data-driven neural modeling. Frontiers in neuroscience, 8, 383
 
-        [2]
+        [2] Ahmadizadeh, S., Karoly, P. J., Neši?, D., Grayden, D. B., Cook, M. J., Soudry, D., & Freestone, D. R. (2018).
+        Bifurcation analysis of two coupled Jansen-Rit neural mass models. PloS one, 13(3), e0192842.
 
-        [3]
+        [3] Kuhlmann, L., Freestone, D. R., Manton, J. H., Heyse, B., Vereecke, H. E., Lipping, T., ... & Liley, D. T. (2016).
+        Neural mass model-based tracking of anesthetic brain states. NeuroImage, 133, 438-456.
     """
 
     scale = 50  # This is to get states and derivatives on the same order of magnitude
