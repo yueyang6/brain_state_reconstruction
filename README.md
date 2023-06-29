@@ -1,7 +1,9 @@
 # brain_state_reconstruction
 
 Yueyang Liu et al 2023 J. Neural Eng. 20 036024
-DOI 10.1088/1741-2552/acd871
+
+
+DOI [10.1088/1741-2552/acd871](https://iopscience.iop.org/article/10.1088/1741-2552/acd871)
 
 ## Environment
 Reommend to create an environment form the env.yml file with the following command.
