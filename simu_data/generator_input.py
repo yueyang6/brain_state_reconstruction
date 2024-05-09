@@ -4,7 +4,7 @@ from itertools import repeat
 from multiprocessing import freeze_support
 from itertools import product
 from statsmodels.stats.diagnostic import acorr_ljungbox
-from util.nmm_train import generate_recordings, set_params_test
+from ..util.nmm_train import generate_recordings, set_params_test
 
 
 if __name__ == '__main__':
